@@ -35,6 +35,7 @@ class App extends React.Component {
         <Text 
           key={index}
           onPress={(itemtodelete) => {this.deleteTodo(itemtodelete)}}
+          style={styles.itemStyle}
         >
           {item}
         </Text>
@@ -44,41 +45,57 @@ class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>New Udemy course</Text>
-        <TextInput
-          style={styles.inputStyle}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-        />
-        <Button
-          style={styles.buttonStyles}
-          title="Add Todo"
-          onPress={this.addTodo}
-        />
-        {this.renderTodos()}
+      <View style={styles.wholeStyle}>
+        <View style={styles.container}>
+          <Text style={styles.header}>Notes App</Text>
+          <TextInput
+            style={styles.inputStyle}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+          <Button
+            style={styles.buttonStyles}
+            color="rgba(100,0,0,1)"
+            title="Add Todo"
+            onPress={this.addTodo}
+          />
+          {this.renderTodos()}
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wholeStyle: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(66, 134, 244)'
+  },
+  container: {
+    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 50,
+    // color: 'white'
+  },
+  header: {
+    fontSize: 30,
+    color: 'white'
   },
   inputStyle: {
     height: 40,
     width: 0.8*Dimensions.get('window').width, 
-    borderColor: "green",
+    color: 'white',
+    borderColor: "white",
     borderWidth: 1,
     marginBottom: 20
   },
   buttonStyles: {
     marginTop: 20,
     paddingTop: 20
+  },
+  itemStyle: {
+    color: 'white'
   }
 });
 
