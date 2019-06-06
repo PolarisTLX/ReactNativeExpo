@@ -12,11 +12,22 @@ class App extends React.Component {
 
   state = {
     text: "",
-    todo: ""
+    todo: ["Learn React", "Learn React Native"]
   }
 
   addTodo = () => {
-    this.setState({todo: this.state.text});
+    let newTodo = this.state.text;
+    let array = this.state.todo;
+    array.push(newTodo);
+    this.setState({todo: array, text: ""});
+  }
+
+  renderTodos = () => {
+    return this.state.todo.map((item, index) => {
+      return (
+        <Text key={index}>{item}</Text>
+      )
+    })
   }
 
   render() {
@@ -26,13 +37,14 @@ class App extends React.Component {
         <TextInput
           style={styles.inputStyle}
           onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
         />
         <Button
           style={styles.buttonStyles}
           title="Add Todo"
           onPress={this.addTodo}
         />
-        <Text>{this.state.todo}</Text>
+        {this.renderTodos()}
       </View>
     );
   }
