@@ -22,10 +22,22 @@ class App extends React.Component {
     this.setState({todo: array, text: ""});
   }
 
+  deleteTodo = (itemtodelete) => {
+    let array = this.state.todo;
+    let position = array.indexOf(itemtodelete);
+    array.splice(position, 1);
+    this.setState({todo: array});
+  }
+
   renderTodos = () => {
     return this.state.todo.map((item, index) => {
       return (
-        <Text key={index}>{item}</Text>
+        <Text 
+          key={index}
+          onPress={(itemtodelete) => {this.deleteTodo(itemtodelete)}}
+        >
+          {item}
+        </Text>
       )
     })
   }
